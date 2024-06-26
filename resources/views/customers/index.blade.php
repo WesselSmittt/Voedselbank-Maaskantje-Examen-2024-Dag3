@@ -49,5 +49,7 @@
     </table>
 @endif
 
+<a href="{{ route('dashboard') }}" class="button">Home</a>
+
 </body>
 </html>

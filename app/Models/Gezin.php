@@ -13,6 +13,16 @@ class Gezin extends Model
 
     public function representative()
     {
-        return $this->hasOne(Persoon::class)->where('is_vertegenwoordiger', true);
+        return $this->hasOne(Persoon::class, 'gezin_id')->where('is_vertegenwoordiger', true);
+    }
+
+    public function members()
+    {
+        return $this->hasMany(Persoon::class, 'gezin_id')->where('IsVertegenwoordiger', 0);
+    }
+
+    public function contacts()
+    {
+        return $this->belongsToMany(Contact::class, 'contact_per_gezin', 'gezin_id', 'contact_id');
     }
 }
