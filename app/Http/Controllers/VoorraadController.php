@@ -72,7 +72,7 @@ class VoorraadController extends Controller
                 ->withInput();
         }
 
-        // Update the amount of products in stock
+        // Update the amount of products in stocka
         $magazijn->aantal = $request->input('aantal');
         $magazijn->save();
 
