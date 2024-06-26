@@ -18,8 +18,9 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-Route::get('/overzicht-voedselpakketten', [VoedselpakketController::class, 'index'])->name('voedselpakketten.index');
-Route::post('/filter-gezinnen', [VoedselpakketController::class, 'filter'])->name('voedselpakketten.filter');
+Route::get('/overzicht-voedselpakketten', [VoedselpakketController::class, 'index'])->name('voedselpakket.index');
+Route::post('/filter-gezinnen', [VoedselpakketController::class, 'filter'])->name('voedselpakket.filter');
+
 
 
 require __DIR__ . '/auth.php';

@@ -11,6 +11,11 @@
                 <div class="p-6 text-gray-900">
                     {{ __("You're logged in!") }}
                 </div>
+                <div class="p-6 text-gray-900">
+                    <a href="{{ route('voedselpakket.index') }}" class="text-blue-500 hover:text-blue-700">
+                        Bekijk Voedselpakketten Overzicht
+                    </a>
+                </div>
             </div>
         </div>
     </div>
