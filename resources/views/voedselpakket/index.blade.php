@@ -27,9 +27,29 @@
                 </div>
             </div>
             <button type="submit" class="ml-2 bg-gray-700 text-white px-4 py-2 rounded">Toon Gezinnen</button>
+            <button type="reset" class="ml-2 bg-red-500 text-white px-4 py-2 rounded">Reset</button>
         </form>
         @if($gezinnen->isEmpty())
-        <div class="alert alert-warning mt-3">Er zijn geen gezinnen bekend die de geselecteerde eetwens hebben</div>
+        <table class="min-w-full bg-white">
+            <thead>
+                <tr>
+                    <th class="py-2 px-4 border-b">Gezinsnaam</th>
+                    <th class="py-2 px-4 border-b">Omschrijving</th>
+                    <th class="py-2 px-4 border-b">Volwassenen</th>
+                    <th class="py-2 px-4 border-b">Kinderen</th>
+                    <th class="py-2 px-4 border-b">Babys</th>
+                    <th class="py-2 px-4 border-b">Vertegenwoordiger</th>
+                    <th class="py-2 px-4 border-b">Voedselpakket Details</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td colspan="7" class="py-2 px-4 border-b bg-yellow-100 text-center">
+                        Er zijn geen gezinnen bekend die de geselecteerde eetwens hebben
+                    </td>
+                </tr>
+            </tbody>
+        </table>
         @else
         <table class="min-w-full bg-white">
             <thead>

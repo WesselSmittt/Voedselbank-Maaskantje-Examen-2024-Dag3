@@ -16,10 +16,10 @@ return new class extends Migration
             $table->integer('aantal_kinderen');
             $table->integer('aantal_babys');
             $table->integer('totaal_aantal_personen');
+            $table->text('omschrijving')->nullable();
             $table->timestamps();
         });
     }
-
     public function down()
     {
         Schema::dropIfExists('gezin');
