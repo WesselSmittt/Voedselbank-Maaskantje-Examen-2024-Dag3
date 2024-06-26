@@ -10,6 +10,7 @@ class CustomerController extends Controller
 {
     public function index()
     {
+        // Haal alle gezinnen op met de vertegenwoordiger en contactgegevens
         $families = Gezin::with('representative.contact')->get();
         $uniquePostcodes = Contact::distinct()->pluck('postcode');
         return view('customers.index', compact('families', 'uniquePostcodes'));
@@ -17,6 +18,7 @@ class CustomerController extends Controller
     
     public function searchByPostcode(Request $request)
     {
+        // Zoek alle gezinnen met een vertegenwoordiger die in de opgegeven postcode woont
         $postcode = $request->input('postcode');
         $families = Gezin::whereHas('representative.contact', function ($query) use ($postcode) {
             $query->where('postcode', $postcode);
