@@ -78,9 +78,10 @@
         <button type="submit">Toon</button>
     </form>
 
-    @if(isset($message))
-        <p>{{ $message }}</p>
-    @else
+
+    @if(count($families) === 0)
+            <p>Er zijn geen klanten bekend die de geselecteerde postcode hebben.</p>
+        @else
         <table>
             <thead>
                 <tr>
