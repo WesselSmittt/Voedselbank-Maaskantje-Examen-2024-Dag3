@@ -18,6 +18,7 @@ class DatabaseSeeder extends Seeder
         $this->call(ContactSeeder::class);
         $this->call(LeverancierSeeder::class);
         $this->call(ProductSeeder::class);
+        $this->call(ProductPerLeverancierSeeder::class);
         
         User::factory()->create([
             'name' => 'Test User',

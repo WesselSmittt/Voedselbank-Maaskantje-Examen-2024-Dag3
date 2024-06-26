@@ -16,7 +16,7 @@ return new class extends Migration
             $table->integer('categorie_id');
             $table->string('naam', 100);
             $table->string('soortallergie', 100)->nullable();
-            $table->integer('barcode');
+            $table->biginteger('barcode');
             $table->date('houdbaarheidsdatum');
             $table->string('omschrijving', 100);
             $table->string('status', 100);
