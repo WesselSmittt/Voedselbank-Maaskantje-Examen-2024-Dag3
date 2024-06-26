@@ -42,13 +42,17 @@ class VoedselpakketController extends Controller
         $gezin = Gezin::with(['personen', 'voedselpakketten' => function ($query) use ($id) {
             $query->where('gezin_id', $id);
         }])->findOrFail($id);
+
         return view('voedselpakket.show', compact('gezin'));
     }
-
     public function edit($id)
     {
         $voedselpakket = Voedselpakket::findOrFail($id);
-        return view('voedselpakket.edit', compact('voedselpakket'));
+        $gezin = $voedselpakket->gezin;
+
+        $isDisabled = $gezin->voedselpakketten->contains('status', 'NietMeerGegeven');
+
+        return view('voedselpakket.edit', compact('voedselpakket', 'isDisabled'));
     }
 
     public function update(Request $request, $id)
@@ -56,10 +60,15 @@ class VoedselpakketController extends Controller
         $voedselpakket = Voedselpakket::findOrFail($id);
         $gezin = $voedselpakket->gezin;
 
-        $voedselpakket->status = $request->input('status');
-        $voedselpakket->datum_uitgifte = $voedselpakket->status === 'Uitgereikt' ? now() : null;
+        if ($gezin->voedselpakketten->contains('status', 'NietMeerGegeven')) {
+            return redirect()->route('voedselpakket.edit', $voedselpakket->id)->with('error', 'Dit gezin is niet meer ingeschreven bij de voedselbank en daarom kan er geen voedselpakket worden uitgereikt');
+        }
+
+        $status = $request->input('status');
+        $voedselpakket->status = $status;
+        $voedselpakket->datum_uitgifte = $status === 'Uitgereikt' ? now() : null;
         $voedselpakket->save();
 
-        return redirect()->route('voedselpakket.show', $gezin->id)->with('success', 'De wijziging is doorgevoerd');
+        return redirect()->route('voedselpakket.edit', $voedselpakket->id)->with('success', 'De wijziging is doorgevoerd');
     }
 }
