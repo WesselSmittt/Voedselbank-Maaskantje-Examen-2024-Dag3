@@ -45,7 +45,7 @@
                 <a href="{{ route('voorraad.edit', $product->id) }}" class="bg-blue-500 text-white px-4 py-2 rounded-md shadow hover:bg-blue-700">Wijzig</a>
                 
                 <div class="space-x-4">
-                        <a href="{{ route('voorraad.index', $product->id) }}" class="bg-gray-600 text-white px-4 py-2 rounded-md shadow hover:bg-gray-700">Terug</a>
+                        <a href="{{ route('voorraad.index', $product->id) }}" class="bg-blue-600 text-white px-4 py-2 rounded-md shadow hover:bg-gray-700">Terug</a>
                         <a href="{{ route('dashboard') }}" class="bg-blue-600 text-white px-4 py-2 rounded-md shadow hover:bg-blue-700">Home</a>
                     </div>
                

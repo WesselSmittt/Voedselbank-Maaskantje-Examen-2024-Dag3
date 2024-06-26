@@ -84,7 +84,7 @@
                 <div class="flex items-center justify-between">
                     <button type="submit" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">Wijzig Product Details</button>
                     <div class="space-x-4">
-                        <a href="{{ route('voorraad.show', $product->id) }}" class="bg-gray-600 text-white px-4 py-2 rounded-md shadow hover:bg-gray-700">Terug</a>
+                        <a href="{{ route('voorraad.show', $product->id) }}" class="bg-blue-600 text-white px-4 py-2 rounded-md shadow hover:bg-gray-700">Terug</a>
                         <a href="{{ route('voorraad.index') }}" class="bg-blue-600 text-white px-4 py-2 rounded-md shadow hover:bg-blue-700">Home</a>
                     </div>
                 </div>
