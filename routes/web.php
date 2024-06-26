@@ -24,8 +24,11 @@ Route::middleware('auth')->group(function () {
     Route::get('/leverancieroverzicht', [LeverancierController::class, 'index'])->name('leverancier.overzicht');
     Route::get('/leveranciers', [LeverancierController::class, 'index'])->name('leveranciers.index');
     Route::get('/productenoverzicht/{leverancier_id}', 'ProductenController@index')->name('productenoverzicht');
-
     Route::get('/producten', [ProductenController::class, 'index'])->name('producten.overzicht');
+    // Route::get('/leverancier/{leverancier}/edit', [LeverancierController::class, 'edit'])->name('leverancier.edit');
+    // Route::post('/product/{product:id}/update', [ProductenController::class, 'update'])->name('product.update');
 });
+
+
 
 require __DIR__.'/auth.php';

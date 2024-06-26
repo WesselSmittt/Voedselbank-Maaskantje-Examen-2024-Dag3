@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 use App\Models\Leverancier; // Zorg ervoor dat je het Leverancier model importeert
+use App\Models\Product;
 
 use Illuminate\Http\Request;
 

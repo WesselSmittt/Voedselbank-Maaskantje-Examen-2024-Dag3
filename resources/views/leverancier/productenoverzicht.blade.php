@@ -21,6 +21,7 @@
                                 <th>Soort Allergie</th>
                                 <th>Barcode</th>
                                 <th>Houdbaarheidsdatum</th>
+                                <th>Product Wijzigen</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -30,6 +31,9 @@
                                     <td>{{ $product->soortallergie }}</td>
                                     <td>{{ $product->barcode }}</td>
                                     <td>{{ \Carbon\Carbon::parse($product->houdbaarheidsdatum)->format('d-m-Y') }}</td>
+                                    <!-- <td>
+                                        <a href="{{ route('leverancier.edit', $product->id) }}" class="btn btn-primary">Bewerken</a>
+                                    </td> -->
                                 </tr>
                             @endforeach
                         </tbody>
