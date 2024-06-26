@@ -65,6 +65,7 @@ class CustomerController extends Controller
 
     public function show($id)
     {
+        //show the family with the representative and contact details
         $family = Gezin::with('representative.contact')->findOrFail($id);
         return view('customers.show', compact('family'));
     }
