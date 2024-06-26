@@ -44,12 +44,11 @@
                     <th class="py-2 px-4 border-b">Babys</th>
                     <th class="py-2 px-4 border-b">Vertegenwoordiger</th>
                     <th class="py-2 px-4 border-b">Voedselpakket Details</th>
-                    <th class="py-2 px-4 border-b">Acties</th>
                 </tr>
             </thead>
             <tbody>
                 <tr>
-                    <td colspan="8" class="py-2 px-4 border-b bg-yellow-100 text-center">
+                    <td colspan="7" class="py-2 px-4 border-b bg-yellow-100 text-center">
                         Er zijn geen gezinnen bekend die de geselecteerde eetwens hebben
                     </td>
                 </tr>
@@ -66,7 +65,6 @@
                     <th class="py-2 px-4 border-b">Babys</th>
                     <th class="py-2 px-4 border-b">Vertegenwoordiger</th>
                     <th class="py-2 px-4 border-b">Voedselpakket Details</th>
-                    <th class="py-2 px-4 border-b">Acties</th>
                 </tr>
             </thead>
             <tbody>
@@ -85,16 +83,11 @@
                         @endforeach
                     </td>
                     <td class="py-2 px-4 border-b text-center">
-                        @foreach($gezin->voedselpakketten as $voedselpakket)
                         <a href="{{ route('voedselpakket.show', $gezin->id) }}" class="text-blue-500 hover:text-blue-700">
                             <svg class="w-6 h-6 text-gray-600" fill="currentColor" viewBox="0 0 20 20">
                                 <path d="M7 10V0L3 4 7 8V0h6v8l4-4-4 4V0z" />
                             </svg>
                         </a>
-                        @endforeach
-                    </td>
-                    <td class="py-2 px-4 border-b text-center">
-                        <a href="{{ route('voedselpakket.show', $gezin->id) }}" class="text-blue-500 hover:text-blue-700">See All</a>
                     </td>
                 </tr>
                 @endforeach
