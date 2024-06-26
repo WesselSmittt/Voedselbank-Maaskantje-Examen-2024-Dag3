@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\ProductenController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\LeverancierController;
 
@@ -22,8 +23,9 @@ Route::middleware('auth')->group(function () {
 Route::middleware('auth')->group(function () {
     Route::get('/leverancieroverzicht', [LeverancierController::class, 'index'])->name('leverancier.overzicht');
     Route::get('/leveranciers', [LeverancierController::class, 'index'])->name('leveranciers.index');
-    Route::get('/productenoverzicht', [ProductenController::class, 'index'])->name('producten.overzicht');
-    Route::get('/producten', [ProductenController::class, 'index']);
+    Route::get('/productenoverzicht/{leverancier_id}', 'ProductenController@index')->name('productenoverzicht');
+
+    Route::get('/producten', [ProductenController::class, 'index'])->name('producten.overzicht');
 });
 
 require __DIR__.'/auth.php';

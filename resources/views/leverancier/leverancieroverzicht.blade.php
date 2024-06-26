@@ -11,6 +11,7 @@
                 <div class="p-6 text-gray-900">
                 <form action="{{ route('leveranciers.index') }}" method="GET">
                     <div class="input-group mb-3">
+                        <H1>Overzicht Leveranciers</H1>
                         <select class="form-control" name="leveranciertype">
                             <option value="">Kies een type...</option>
                             <option value="Bedrijf">Bedrijf</option>
@@ -45,6 +46,7 @@
                                 <th>Telefoonnummer</th>
                                 <th>LeverancierNummer</th>
                                 <th>LeverancierType</th>
+                                <th>Product Details</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -65,7 +67,7 @@
                                     </td>
                                     <td>{{ $leverancier->leveranciernummer }}</td>
                                     <td>{{ $leverancier->leveranciertype }}</td>
-
+                                    <td><a href="{{ route('producten.overzicht', ['leverancier_id' => $leverancier->id]) }}">Producten Details</a> <!-- Link naar productenoverzicht -->
                                 </tr>
                             @endforeach
                         </tbody>

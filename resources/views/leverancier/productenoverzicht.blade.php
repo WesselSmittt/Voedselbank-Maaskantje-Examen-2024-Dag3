@@ -9,7 +9,32 @@
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 text-gray-900">
-                    {{ __("You're logged in!") }}
+                    <h1>Overzicht Producten</h1>
+                    <h2>Leverancier Details</h2>
+                        <p><strong>Naam:</strong> {{ $leverancier->naam }}</p>
+                        <p><strong>Leveranciernummer:</strong> {{ $leverancier->leveranciernummer }}</p>
+                        <p><strong>Leveranciertype:</strong> {{ $leverancier->leveranciertype }}</p>
+                    <table class="table-auto w-full">
+                        <thead>
+                            <tr>
+                                <th>Naam</th>
+                                <th>Soort Allergie</th>
+                                <th>Barcode</th>
+                                <th>Houdbaarheidsdatum</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach ($producten as $product)
+                                <tr>
+                                    <td>{{ $product->naam }}</td>
+                                    <td>{{ $product->soortallergie }}</td>
+                                    <td>{{ $product->barcode }}</td>
+                                    <td>{{ \Carbon\Carbon::parse($product->houdbaarheidsdatum)->format('d-m-Y') }}</td>
+                                </tr>
+                            @endforeach
+                        </tbody>
+                    </table>
+                    <a href="{{ route('leverancier.overzicht') }}" class="btn btn-primary">Terug</a>
                 </div>
             </div>
         </div>

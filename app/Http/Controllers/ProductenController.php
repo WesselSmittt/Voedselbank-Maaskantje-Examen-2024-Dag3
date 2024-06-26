@@ -1,6 +1,8 @@
 <?php
 
 namespace App\Http\Controllers;
+use App\Models\Leverancier;
+use App\Models\Product;
 
 use Illuminate\Http\Request;
 
@@ -9,10 +11,19 @@ class ProductenController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        return view('leverancier.productenoverzicht');
+        $leverancierId = $request->query('leverancier_id');
+    
+        // Voer een join uit met de productperleverancier tabel en filter op leverancier_id
+        $producten = Product::join('productperleverancier', 'product.id', '=', 'productperleverancier.product_id')
+                            ->where('productperleverancier.leverancier_id', $leverancierId)
+                            ->select('product.naam', 'product.soortallergie', 'product.barcode', 'product.houdbaarheidsdatum')
+                            ->get();
+    
+        $leverancier = Leverancier::find($leverancierId);
 
+        return view('leverancier.productenoverzicht', compact('leverancier', 'producten'));    
     }
 
     /**
