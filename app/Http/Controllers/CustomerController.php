@@ -59,7 +59,7 @@ class CustomerController extends Controller
         // Opslaan van de updates
         $representative->contact->save();
         $representative->save();
-        
+
         return redirect()->route('customers.index', $family->id)->with('success', 'De klantgegevens zijn gewijzigd.');
     }
 
