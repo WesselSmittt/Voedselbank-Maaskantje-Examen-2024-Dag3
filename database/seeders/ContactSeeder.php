@@ -99,7 +99,7 @@ class ContactSeeder extends Seeder
                 'postcode' => '5271ZH',
                 'woonplaats' => 'Maaskantje',
                 'email' => 'm.yazidi@gemeenteutrecht.nl',
-                'mobitelefoonnummerel' => '+31 623456123',
+                'telefoonnummer' => '+31 623456123',
             ],
             [
                 'id' => 10,

@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
+use App\Models\Leverancier; // Zorg ervoor dat je het Leverancier model importeert
 
 use Illuminate\Http\Request;
 
@@ -9,9 +10,23 @@ class LeverancierController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        //
+        $leveranciertype = $request->input('leveranciertype');
+    
+        $leveranciers = Leverancier::query(); // Zorg ervoor dat je het model correct aanspreekt
+    
+        if (!empty($leveranciertype)) {
+            $leveranciers->where('leveranciertype', $leveranciertype);
+        }
+    
+        $leveranciers = $leveranciers->get();
+    
+        if ($leveranciers->isEmpty()) {
+            return view('leverancier.leverancieroverzicht', ['leveranciers' => $leveranciers, 'message' => 'Er zijn geen leveranciers bekend van het geselecteerde leverancierstype.']);
+        } else {
+            return view('leverancier.leverancieroverzicht', ['leveranciers' => $leveranciers]);
+        }
     }
 
     /**
@@ -19,7 +34,8 @@ class LeverancierController extends Controller
      */
     public function create()
     {
-        //
+        $leveranciers = Leverancier::with('contacten')->get();
+
     }
 
     /**
@@ -27,7 +43,7 @@ class LeverancierController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        
     }
 
     /**
