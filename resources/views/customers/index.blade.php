@@ -109,7 +109,6 @@
             </tbody>
         </table>
     @endif
-
     <a href="{{ url('/dashboard') }}" class="btn">Home</a>
 
 </body>
