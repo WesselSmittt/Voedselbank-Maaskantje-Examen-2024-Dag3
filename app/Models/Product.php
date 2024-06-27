@@ -10,6 +10,7 @@ class Product extends Model
     use HasFactory;
 
     protected $table = 'product';
-
+    protected $dates = ['houdbaarheidsdatum'];
+    protected $fillable = ['naam', 'houdbaarheidsdatum', 'barcode'];
     
 }

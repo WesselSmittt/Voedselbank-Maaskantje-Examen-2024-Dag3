@@ -23,11 +23,12 @@ Route::middleware('auth')->group(function () {
 Route::middleware('auth')->group(function () {
     Route::get('/leverancieroverzicht', [LeverancierController::class, 'index'])->name('leverancier.overzicht');
     Route::get('/leveranciers', [LeverancierController::class, 'index'])->name('leveranciers.index');
-    Route::get('/productenoverzicht/{leverancier_id}', 'ProductenController@index')->name('productenoverzicht');
+    Route::get('/producten/overzicht/{leverancier_id}', 'ProductenController@index')->name('productenoverzicht');
     Route::get('/producten', [ProductenController::class, 'index'])->name('producten.overzicht');
-    Route::get('/leverancier/{id}/edit', [LeverancierController::class, 'edit'])->name('leverancier.edit');
-    // Route::post('/product/{product:id}/update', [ProductenController::class, 'update'])->name('product.update');
-});
+    Route::get('/producten/overzicht', [ProductenController::class, 'showProductenOverzicht'])->name('producten.overzicht');
+    Route::get('/product/edit/{id}', [ProductenController::class, 'edit'])->name('product.edit');
+    Route::put('/product/{id}', [ProductenController::class, 'update'])->name('product.update');
+}); 
 
 
 

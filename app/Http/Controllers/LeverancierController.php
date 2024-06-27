@@ -58,9 +58,10 @@ class LeverancierController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit($id)
     {
-        //
+        $product = Product::findOrFail($id);
+        return view('leverancier.edit', compact('product'));
     }
 
     /**

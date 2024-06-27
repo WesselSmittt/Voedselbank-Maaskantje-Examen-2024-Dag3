@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 use App\Models\Leverancier;
 use App\Models\Product;
-
+use carbon\carbon;
+use Illuminate\Support\Facades\Validator;
+use Illuminate\Validation\Rule;
 use Illuminate\Http\Request;
 
 class ProductenController extends Controller
@@ -24,6 +26,12 @@ class ProductenController extends Controller
         $leverancier = Leverancier::find($leverancierId);
 
         return view('leverancier.productenoverzicht', compact('leverancier', 'producten'));    
+    }
+
+    public function showProductenOverzicht()
+    {
+        $producten = Product::all(); // Zorgt ervoor dat alle kolommen worden opgehaald, inclusief `id`
+        return view('leverancier.productenoverzicht', compact('producten'));
     }
 
     /**
@@ -49,38 +57,54 @@ class ProductenController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show($id)
     {
-        //
+        $product = Product::find($id);
+        return view('productenoverzicht', compact('product'));
     }
 
     /**
      * Show the form for editing the specified resource.
      */
     
-    //  public function edit(Leverancier $leverancier)
-    //  {
-    //      // Zoek het product op basis van de ID. Gebruik firstOrFail om een 404 te gooien als het product niet gevonden wordt.
-    //      $product = Product::findOrFail($id);
-     
-    //      // Stuur het product door naar de view. Zorg ervoor dat je een view hebt die overeenkomt met dit pad.
-    //      return view('leverancier.edit', compact('product'));
-    // }
+    public function edit($id)
+    {
+        $product = Product::findOrFail($id); // Find the product by ID or fail
+        return view('leverancier.edit', compact('product')); // Return the edit view with the product data
+    }
      
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Product $product)
-    {
-        $validated = $request->validate([
-            'houdbaarheidsdatum' => 'required|date',
-        ]);
-    
-        $product->houdbaarheidsdatum = $validated['houdbaarheidsdatum'];
-        $product->save();
-    
-        return redirect()->route('producten.overzicht')->with('success', 'Product bijgewerkt.');
+    public function update(Request $request, $id)
+{
+    // Valideer de request data
+    $validatedData = $request->validate([
+        'houdbaarheidsdatum' => 'required|date',
+        // Voeg eventuele andere velden toe die je wilt valideren
+    ]);
+
+    // Vind het product en update het met de gevalideerde data
+    $product = Product::findOrFail($id);
+    $product->houdbaarheidsdatum = $validatedData['houdbaarheidsdatum'];
+    // Update eventuele andere velden hier
+    $product->save();
+
+    // Check of de houdbaarheidsdatum meer dan 7 dagen in de toekomst ligt
+    $today = Carbon::today();
+    $futureDate = Carbon::parse($validatedData['houdbaarheidsdatum']);
+    $daysDifference = $today->diffInDays($futureDate);
+
+    if ($daysDifference > 7) {
+        // Als de datum meer dan 7 dagen in de toekomst ligt, geef een foutmelding
+        return redirect()->back()->with('error', 'Houdbaarheidsdatum mag niet meer dan 7 dagen in de toekomst liggen.');
     }
+
+    // Redirect naar een view met een succesbericht, of toon de bijgewerkte productgegevens
+    // Pas de route aan naar waar je de gebruiker naartoe wilt sturen
+    return redirect()->route('producten.overzicht', $product->id)->with('success', 'Product succesvol bijgewerkt.');
+}
+
 
     /**
      * Remove the specified resource from storage.
