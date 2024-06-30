@@ -2,8 +2,11 @@
 
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\VoorraadController; 
+use App\Http\Controllers\ProductenController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CustomerController;
+use App\Http\Controllers\LeverancierController;
+
 
 Route::get('/', function () {
     return view('welcome');
@@ -30,5 +33,17 @@ Route::middleware('auth')->group(function () {
     Route::get('/voorraad/{id}/edit', [VoorraadController::class, 'edit'])->name('voorraad.edit');
     Route::post('/voorraad/{id}/update', [VoorraadController::class, 'update'])->name('voorraad.update');
 });
+
+Route::middleware('auth')->group(function () {
+    Route::get('/leverancieroverzicht', [LeverancierController::class, 'index'])->name('leverancier.overzicht');
+    Route::get('/leveranciers', [LeverancierController::class, 'index'])->name('leveranciers.index');
+    Route::get('/producten/overzicht/{leverancier_id}', 'ProductenController@index')->name('productenoverzicht');
+    Route::get('/producten', [ProductenController::class, 'index'])->name('producten.overzicht');
+    Route::get('/producten/overzicht', [ProductenController::class, 'showProductenOverzicht'])->name('producten.overzicht');
+    Route::get('/product/edit/{id}', [ProductenController::class, 'edit'])->name('product.edit');
+    Route::put('/product/{id}', [ProductenController::class, 'update'])->name('product.update');
+}); 
+
+
 
 require __DIR__.'/auth.php';

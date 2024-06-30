@@ -10,7 +10,8 @@
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 text-blue-600 underline">
                     <a href="{{ route('voorraad.index') }}">{{ __("Overzicht productvoorraden") }}</a><br>
-                    <a href="{{ route('customers.index') }}">Overzicht klanten</a>
+                    <a href="{{ route('customers.index') }}">Overzicht klanten</a><br>
+                    <a href="{{ route('leverancier.overzicht') }}">{{ __("Overzicht Leveranciers") }}</a>
             </div>
             </div>
         </div>
