@@ -9,7 +9,7 @@
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 text-blue-600 underline">
-                    <a href="{{ route('voorraad.index') }}">{{ __("Overzicht productvoorraden") }}</a>
+                    <a href="{{ route('voorraad.index') }}">{{ __("Overzicht productvoorraden") }}</a><br>
                     <a href="{{ route('customers.index') }}">Overzicht klanten</a>
             </div>
             </div>
