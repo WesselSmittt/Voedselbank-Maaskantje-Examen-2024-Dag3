@@ -10,7 +10,18 @@ class Product extends Model
     use HasFactory;
 
     protected $table = 'producten';
+    protected $fillable = [
+        'categorie_id',
+        'naam',
+        'soort_allergie',
+        'barcode',
+        'houdbaarheidsdatum',
+        'omschrijving',
+        'status'
+    ];
 
-    protected $dates = ['houdbaarheidsdatum'];
-    protected $fillable = ['naam', 'houdbaarheidsdatum', 'barcode'];
+    public function productPerVoedselpakketten()
+    {
+        return $this->hasMany(ProductPerVoedselpakket::class);
+    }
 }
