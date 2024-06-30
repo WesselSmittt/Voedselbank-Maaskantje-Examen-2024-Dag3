@@ -12,7 +12,7 @@
                     <a href="{{ route('voorraad.index') }}">{{ __("Overzicht productvoorraden") }}</a><br>
                     <a href="{{ route('customers.index') }}">Overzicht klanten</a><br>
                     <a href="{{ route('leverancier.overzicht') }}">{{ __("Overzicht Leveranciers") }}</a>
-            </div>
+                </div>
             </div>
         </div>
     </div>
